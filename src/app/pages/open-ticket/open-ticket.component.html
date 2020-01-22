@@ -1,0 +1,66 @@
+<nz-card nzTitle="Open Ticket">
+    <form
+nz-form
+
+[formGroup]="validateForm"
+(ngSubmit)="submitForm()"
+>
+<nz-form-item>
+  <nz-form-label [nzSpan]="isHorizontal ? 5 : null" nzRequired>Client Name</nz-form-label>
+  <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input client full name!">
+    <input nz-input formControlName="clientName" placeholder="Client Name" />
+  </nz-form-control>
+</nz-form-item>
+<nz-form-item>
+  <nz-form-label [nzSpan]="isHorizontal ? 5 : null" nzRequired>Phone Number</nz-form-label>
+  <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please input client phone number!">
+    <input nz-input formControlName="phoneNum" placeholder="Phone Number" />
+  </nz-form-control>
+</nz-form-item>
+
+<nz-form-item>
+    <nz-form-label [nzSpan]="5">Email</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Email is not valid">
+      <input nz-input  placeholder="Email" name="email" email />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzRequired>Product</nz-form-label>
+    <nz-form-control [nzSpan]="isHorizontal ? 14 : null"  nzHasFeedback nzRequired>
+      <nz-select name="select-validate" >
+        <nz-option nzValue="Select Product" nzLabel="Option 1"></nz-option>
+        <nz-option nzValue="Option 1" nzLabel="Option 2"></nz-option>
+        <nz-option nzValue="Option 2" nzLabel="Option 1"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzRequired>Department</nz-form-label>
+    <nz-form-control [nzSpan]="isHorizontal ? 14 : null"  nzHasFeedback>
+      <nz-select name="select-validate">
+        <nz-option nzValue="Option 1" nzLabel="Option 1"></nz-option>
+        <nz-option nzValue="Option 1" nzLabel="Option 1"></nz-option>
+        <nz-option nzValue="Option 2" nzLabel="Option 2"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5" nzRequired>Comment</nz-form-label>
+    <nz-form-control [nzSpan]="isHorizontal ? 14 : null" nzErrorTip="Please write something here!">
+      <textarea formControlName="comment" nz-input rows="2" placeholder="write any thing"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control style="text-align: center;">
+      <button nz-button nzType="primary" (click)="loadOne()" [nzLoading]="isLoadingOne">Open Ticket</button>
+    </nz-form-control>
+  </nz-form-item>
+
+  
+   
+</form>
+</nz-card>
+

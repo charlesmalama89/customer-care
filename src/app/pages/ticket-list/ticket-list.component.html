@@ -1,0 +1,46 @@
+<nz-card nzTitle="Ticket List">
+        <nz-table #basicTable [nzData]="listOfData">
+                <thead>
+                  <tr>
+                    <th>
+                        Ticket Number
+                     
+                    </th>
+                    <th>Client</th>
+                    <th>Department</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Created on</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of basicTable.data">
+                    <td>{{data.ticketNumber}}</td>
+                    <td>{{data.client}}</td>
+                    <td>{{data.department}}</td>
+                    <td>{{data.product}}</td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.created_on}}</td>
+                    <td>
+                      <a nz-popover  [nzPopoverContent]="contentTemplate" nzPopoverTrigger="click">View Tckiet</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </nz-table>
+</nz-card>
+
+
+<ng-template #contentTemplate>
+        <nz-card nzTitle="Ticket Details">
+          <div style="width: 500px;" *ngFor="let data of basicTable.data">
+          <p>Ticket Number: {{data.ticketNumber}}</p>
+          <p>Client: {{data.client}}</p>
+          <p>Department: {{data.department}}</p>
+          <p>Product: {{data.product}}</p>
+          <p>Status: {{data.status}}</p>
+          <p>Close By: {{data.client}}</p>
+          <p>Created on: {{data.created_on}}</p>
+        </div>    
+        </nz-card>
+  </ng-template>

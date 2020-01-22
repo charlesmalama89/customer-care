@@ -1,0 +1,83 @@
+<nz-card nzTitle="Assigned Tickets">
+        <nz-table #basicTable [nzData]="listOfData">
+                <thead>
+                  <tr>
+                    <th>Ticket Number</th>
+                    <th>Client</th>
+                    <th>Department</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Created on</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of basicTable.data">
+                    <td>{{data.ticketNumber}}</td>
+                    <td>{{data.client}}</td>
+                    <td>{{data.department}}</td>
+                    <td>{{data.product}}</td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.created_on}}</td>
+                    <td>
+                      
+                      <a nz-dropdown [nzDropdownMenu]="menu">
+                            Select Action
+                            <i nz-icon nzType="down"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </nz-table>
+</nz-card>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item nz-popover  [nzPopoverContent]="commentPopUp" nzPopoverTrigger="click">Comment</li>
+          <li nz-menu-item nz-popover  [nzPopoverContent]="contentTemplate" nzPopoverTrigger="click">View Tckiet</li>
+        </ul>
+      </nz-dropdown-menu>
+
+
+    <ng-template #contentTemplate>
+            <nz-card nzTitle="Ticket Details">
+              <div style="width: 500px;" *ngFor="let data of basicTable.data">
+              <p>Ticket Number: {{data.ticketNumber}}</p>
+              <p>Client: {{data.client}}</p>
+              <p>Department: {{data.department}}</p>
+              <p>Product: {{data.product}}</p>
+              <p>Status: {{data.status}}</p>
+              <p>Assigned by: {{data.client}}</p>
+              <p>Created on: {{data.created_on}}</p>
+            </div>    
+            </nz-card>
+      </ng-template>
+
+      <ng-template #commentPopUp>
+            <nz-card nzTitle="Ticket Details">
+              <div style="width: 500px;" *ngFor="let data of basicTable.data">
+              <p>Ticket Number: {{data.ticketNumber}}</p>
+              <p>Client: {{data.client}}</p>
+              <p>Department: {{data.department}}</p>
+              <p>Product: {{data.product}}</p>
+              <p>Status: {{data.status}}</p>
+              <p>Assigned by: {{data.client}}</p>
+              <p>Created on: {{data.created_on}}</p>
+            </div>  
+            
+            <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                    <nz-form-item>
+                        <nz-form-control [nzSpan]="14" nzErrorTip="Please write something here!">
+                        <textarea formControlName="comment" nz-input rows="2" placeholder="write closing comment"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+    
+                    <nz-form-item>
+                        <nz-form-control style="text-align: center;">
+                        <button nz-button nzType="primary" (click)="loadOne()" [nzLoading]="isLoadingOne">Close Ticket</button>
+                        </nz-form-control>
+                    </nz-form-item>
+    
+                </form>
+            </nz-card>
+      </ng-template>  
